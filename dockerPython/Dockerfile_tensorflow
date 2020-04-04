@@ -1,0 +1,25 @@
+FROM tensorflow/tensorflow:nightly-py3-jupyter
+
+# Install pythonn3, vim and git
+RUN apt-get update && apt-get install -y im git-core python3 python3-pip python3-dev
+
+# Install some Python packages
+RUN pip3 install numpy scikit-learn matplotlib
+
+# Configure timezone for git
+ARG TZ='America/New_York'
+RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
+RUN DEBIAN_FRONTEND=noninteractive apt-get install -y gitk
+
+# Change user from root to dev using ID 1001 (do this before setting git user and email)
+ARG UID=1001
+ARG GID=1001
+ARG UNAME=dev
+RUN groupadd -g $GID -o $UNAME
+RUN useradd -m -u $UID -g $GID -o -s /bin/bash $UNAME
+USER $UNAME
+
+# Configure git (do this after changing user and group ID)
+ARG git_user='Tianxiang'
+ARG git_email='TSu@slb.com'
+RUN git config --global user.name ${git_user} && git config --global user.email ${git_email}

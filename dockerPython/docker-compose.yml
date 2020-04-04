@@ -1,0 +1,22 @@
+version: '3'
+services:
+        tensorflow:
+                build:
+                        context: ./
+                        dockerfile: Dockerfile_tensorflow
+                        args:
+                            git_user: Tianxiang
+                            git_email: TSu@slb.com
+                image: tianxiang84/python:tensorflow
+                container_name: python_tensorflow
+                stdin_open: true
+                tty: true
+                volumes:
+                        - ../:/home/TSu/Projects/programmingLanguage/python
+                        - /tmp/.X11-unix:/tmp/.X11-unix
+                env_file:
+                        - tensorflow.env
+                working_dir: /home/TSu/Projects/programmingLanguage/python
+                entrypoint:
+                  - /bin/bash
+                  - dockerPython/entrypoint.sh

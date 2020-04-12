@@ -7,6 +7,9 @@ User needs to specified:
 (1) folder path (with pattern of the files you want to process, e.g., '*.txt') -- second last line of the script
 (2) batch size in which you want to process the files -- last line of the script
 (2) given a list of files, how you want to process them (example here is to simply list them in terminal) -- modify the processFun function
+
+T Su
+April 2020
 '''
 
 import sys

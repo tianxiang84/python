@@ -4,7 +4,7 @@ FROM tensorflow/tensorflow:nightly-py3-jupyter
 RUN apt-get update && apt-get install -y im git-core python3 python3-pip python3-dev
 
 # Install some Python packages
-RUN pip3 install numpy scikit-learn matplotlib
+RUN pip3 install numpy scikit-learn matplotlib pillow
 
 # Configure timezone for git
 ARG TZ='America/New_York'
